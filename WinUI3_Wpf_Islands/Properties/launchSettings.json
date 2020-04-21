@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "WinUI3_Wpf_Islands": {
+      "commandName": "Project",
+      "nativeDebugging": false
+    }
+  }
+}

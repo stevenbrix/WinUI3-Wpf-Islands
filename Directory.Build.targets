@@ -1,0 +1,14 @@
+<Project>
+  <Target Name="_RemoveWinmdFromReferences"
+          AfterTargets="ResolveProjectReferences"
+          Condition="'$(MSBuildProjectExtension)'!='.vcxproj'" 
+          Returns="@(_ResolvedNativeProjectReferencePaths);@(_ResolvedProjectReferencePaths);@(Reference);@(ReferenceCopyLocalPaths);@(_WinMdProjectReferences)">
+    <ItemGroup>
+      <_WinMdProjectReferences Include="@(_ResolvedProjectReferencePaths)" Condition="'%(_ResolvedProjectReferencePaths.FileType)'=='winmd'" />
+      <_ResolvedProjectReferencePaths Remove="@(_WinMdProjectReferences)" />
+
+      <ReferenceCopyLocalPaths Include="@(_WinMdProjectReferences->'%(RootDir)%(Directory)%(Implementation)')" />
+    </ItemGroup>
+  </Target>
+
+</Project>
